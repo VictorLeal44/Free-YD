@@ -1,0 +1,21 @@
+html, body {
+    height: 100%;
+    margin: 0; /* Elimina el margen por defecto */
+}
+
+.centro{
+    width: 65%;
+    margin: auto;
+}
+.titulo{
+    font-size:medium;
+}
+
+.url{
+    margin-left: 0.5cm;
+}
+
+body{background: linear-gradient(to right top, #290169, #7310ff);
+    background-size: cover;
+    height: 100%;
+    margin: 0;}

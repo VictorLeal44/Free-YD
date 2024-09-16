@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DVY</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">FreeDVY</a>
+            </div>
+          </nav>
+    </header>
+        <div class="container centro p-5" >
+            <div class="card text-center" >
+                <div class="card-header">
+                </div>
+                <div class="card-body p-3">
+                    <form action="/ruta" method="post">
+                        <div class="row">
+                            <input class="col form-label  p-1 url" type="text" name="url" placeholder="url">
+                            <div class="col-2">
+                                <button type="submit" class="btn btn-outline-danger"><i class="fa fa-download"></i>descargar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row p-3">
+                        {% if titulo %}
+                        <h1 class="titulo"><strong><i class="fa fa-quote-left"></i> titulo: </strong>{{ titulo }}</h1>
+                        {% else %}
+                        <h1 class="titulo"><strong><i class="fa fa-quote-left"></i> titulo: </strong></h1>
+                        <h1 class="titulo"><strong><i class="fa fa-weight-hanging"></i>peso: </strong></h1>                        
+                        {% endif %}
+                    </div>
+                    <div class="row p-3">
+                        <div class="dropdown">
+                            <a href="{{ url_for('musica' ) }}" class="btn btn-primary col"><i class="fa fa-music"></i> Formato de audio</a>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-film"></i> Formato de video
+                            </button>
+                            <ul class="dropdown-menu col">
+                                <li><a class="dropdown-item" href="{{ url_for('video', formato= 144 ) }}">144p</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('video', formato= 240 ) }}">240</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('video', formato= 360 ) }}">360p</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('video', formato= 480 ) }}">480p</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('video', formato= 720 ) }}">720p</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('video', formato= 1080 ) }}">1080p</a></li>
+                            </ul>
+                            </div>
+                    </div>
+                    <a href="#" class="btn btn-primary col"><i class="fa fa-list"></i> descarga por playlist</a>
+                </div>
+                <div class="card-footer text-body-secondary">
+                </div>
+            </div>
+        </div>
+        {% if resultado == True %}
+        <button id="resultado" onclick="exito()" style="display: none;"></button>            
+        {% endif %}
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sweetalert2@11.js') }}"></script>
+    <script>
+        function exito(){Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Your work has been saved",
+  showConfirmButton: false,
+  timer: 1500
+});}
+var resultado = document.getElementById("resultado")
+if (resultado){
+    console.log("click")
+    resultado.click()
+}
+    </script>
+</body>
+</html>
